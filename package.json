@@ -1,0 +1,47 @@
+{
+  "name": "martinfocus",
+  "version": "0.0.1",
+  "description": "MartinFocus - pomodoro tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --mode development --open",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NewMartin1902/MartinFocus.git"
+  },
+  "keywords": [
+    "MartinFocus",
+    "pomodoro",
+    "tracker",
+    "productivity"
+  ],
+  "author": "Aliaksandr Martsinets",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NewMartin1902/MartinFocus/issues"
+  },
+  "homepage": "https://github.com/NewMartin1902/MartinFocus#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.15.4",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.3.0",
+    "sass": "^1.41.1",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.12.1",
+    "@fortawesome/fontawesome-free": "^5.15.4"
+  }
+}
