@@ -1,0 +1,43 @@
+.footer{
+    margin-top: $sectionMargin;
+    background-color: $accentColor;
+    padding: 15px 0;
+    color: $whiteColor;
+}
+
+.footer-report{
+    text-align: center;
+
+    &__item{
+        display: inline-block;
+        margin-right: 45px;
+
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+
+    &__item-value{
+        @include boldFont();
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 460px) {
+    .footer-report{
+    
+        &__item{
+            margin-right: 20px;
+        }
+    }
+}
+
+@media (max-width: 390px) {
+    .footer-report{
+    
+        &__item{
+            display: block;
+            margin: 10px 0;
+        }
+    }
+}

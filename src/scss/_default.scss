@@ -11,6 +11,16 @@ body{
     min-width: 320px;
 }
 
+ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
 .container{
     max-width: 1170px;
     padding: 0 15px;
@@ -24,3 +34,15 @@ body{
 .visible{
     display: block !important;
 }
+
+.button-primary{
+    @include boldFont();
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: $accentColor;
+    color: $whiteColor;
+    i{
+        margin-right: 10px;
+    }
+}
+

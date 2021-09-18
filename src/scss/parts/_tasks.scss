@@ -1,0 +1,197 @@
+.tasks-section{
+    margin-top: $sectionMargin;
+}
+
+.section-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    @include boldFont();
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    &::after, &::before{
+        content: '';
+        width: 50%;
+        height: 1px;
+        background-color: $borderColor;
+        margin: 0 25px;
+    }
+}
+
+.create-task-form{
+    margin-top: $blockMargin;
+    border: 1px solid $borderColor;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+
+    &__input, &__button{
+        border: none;
+        height: 50px;
+    }
+
+    &__input{
+        padding: 0 15px;
+        width: 80%;
+        @include boldFont();
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+    &__button{
+        width: 20%; 
+    }
+}
+
+
+.tasks-list{
+    margin-top: $blockMargin;
+}
+
+.task-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid $borderColor;
+
+    &:first-child{
+        padding-top: 0;
+    }
+
+    &__title{
+        @include mediumFont();
+        font-size: 16px;
+    }
+}
+
+.task-item-control{
+    display: flex;
+    align-items: center;
+
+    &__play-button{
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    &__counter-of{
+        @include boldFont();
+    }
+}
+
+.margin_right{
+    margin-right: 45px;
+}
+
+.pomodoro-task-count{
+
+    &__minus{
+        margin-right: 10px;
+    }
+
+    &__plus{
+        margin-left: 10px;
+    }
+
+    &__minus, &__plus:hover{
+        cursor: pointer;
+    }
+
+    &__value-input{
+        width: 50px;
+        border: 1px solid $borderColor;
+        font-size: 15px;
+        padding: 10px 0;
+        text-align: center;
+        border-radius: 5px;
+        @include boldFont();
+    }
+
+}
+
+.task-item-settings{
+    width: 50px;
+    height: 39px;
+    border: 1px solid $borderColor;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+        cursor: pointer
+    }
+}
+
+
+.active-task-section{
+    margin-top: $blockMargin;
+    text-align: center;
+    @include boldFont();
+    font-size: 18px;
+}
+
+@media (max-width: 720px) {
+    .task-item{
+        flex-direction: column;
+
+        &__title{
+            margin-bottom: 15px;
+        }
+    }
+}
+
+
+@media (max-width: 620px) {
+    .create-task-form{
+        &__input{
+            width: 60%;
+        }
+        
+        &__button{
+            width: 40%;
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .task-item{
+        padding: 15px 0;
+    }
+    .create-task-form{
+        &__input{
+            width: 80%;
+        }
+        &__button{
+            width: 20%;
+            .responsive_display_none_text{
+                display: none;
+            }
+            i{
+                margin-right: 0;
+            }
+        }
+    }
+
+    .margin_right{
+        margin-right: 20px;
+    }
+
+    .pomodoro-task-count{
+    
+        &__minus{
+            margin-right: 5px;
+        }
+    
+        &__plus{
+            margin-left: 5px;
+        }
+    }
+}

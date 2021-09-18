@@ -43,9 +43,128 @@
         <div class="timer">25:00</div>
 
         <div class="timer-control">
-            <button class="timer-control__button active_button start_stop_button" id="startStopButton"><i class="fas fa-play"></i> Start</button>
+            <button class="timer-control__button start_stop_button button-primary" id="startStopButton"><i class="fas fa-play"></i> Start</button>
             <button class="timer-control__button next_button" id="nextTimerButton" disabled><i class="fas fa-step-forward"></i></button>
         </div>
     </section>
+
+    <section class="active-task-section container">I'm creating my first task</section>
+
+    <section class="tasks-section container">
+        <div class="section-title">Tasks</div>
+
+        <form class="create-task-form">
+            <input class="create-task-form__input" type="text" placeholder="What are you working now?" name="taskTitle"> 
+            <button type="submit" class="create-task-form__button button-primary"><i class="fas fa-plus"></i> <span class="responsive_display_none_text">Add task</span> </button>
+        </form>
+
+        <div class="tasks-list">           
+            
+
+            <div class="task-item" id="taskItem">
+                <div class="task-item__title">I'm creating my first task</div>
+
+                <div class="task-item-control">
+
+                    <div class="task-item-control__counter-of margin_right">
+                        <span class="made">1</span>
+                         / 
+                         <span class="total">3</span> 
+                    </div>
+
+                    <div class="task-item-control__play-button margin_right"><i class="fas fa-play"></i></div>
+
+                    <div class="pomodoro-task-count margin_right">
+                        <span class="pomodoro-task-count__minus" ><i class="fas fa-minus"></i></span>
+                        <input class="pomodoro-task-count__value-input" type="text" value="4">
+                        <span class="pomodoro-task-count__plus"><i class="fas fa-plus"></i></span>
+                    </div>
+
+                    <div class="task-item-settings"> <i class="fas fa-ellipsis-v"></i></div>
+                </div>
+            </div>
+
+            <div class="task-item" id="taskItem">
+                <div class="task-item__title">I'm creating my first task</div>
+
+                <div class="task-item-control">
+
+                    <div class="task-item-control__counter-of margin_right">
+                        <span class="made">5</span>
+                         / 
+                         <span class="total">10</span> 
+                    </div>
+
+                    <div class="task-item-control__play-button margin_right"><i class="fas fa-play"></i></div>
+
+                    <div class="pomodoro-task-count margin_right">
+                        <span class="pomodoro-task-count__minus" ><i class="fas fa-minus"></i></span>
+                        <input class="pomodoro-task-count__value-input" type="text" value="4">
+                        <span class="pomodoro-task-count__plus"><i class="fas fa-plus"></i></span>
+                    </div>
+
+                    <div class="task-item-settings"> <i class="fas fa-ellipsis-v"></i></div>
+                </div>
+            </div>
+
+
+            <div class="task-item" id="taskItem">
+                <div class="task-item__title">I'm creating my first task</div>
+
+                <div class="task-item-control">
+
+                    <div class="task-item-control__counter-of margin_right">
+                        <span class="made">3</span>
+                         / 
+                         <span class="total">4</span> 
+                    </div>
+
+                    <div class="task-item-control__play-button margin_right"><i class="fas fa-play"></i></div>
+
+                    <div class="pomodoro-task-count margin_right">
+                        <span class="pomodoro-task-count__minus" ><i class="fas fa-minus"></i></span>
+                        <input class="pomodoro-task-count__value-input" type="text" value="4">
+                        <span class="pomodoro-task-count__plus"><i class="fas fa-plus"></i></span>
+                    </div>
+
+                    <div class="task-item-settings"> <i class="fas fa-ellipsis-v"></i></div>
+                </div>
+            </div>
+
+
+            <div class="task-item" id="taskItem">
+                <div class="task-item__title">I'm creating my first task </div>
+
+                <div class="task-item-control">
+
+                    <div class="task-item-control__counter-of margin_right">
+                        <span class="made">1</span>
+                         / 
+                         <span class="total">6</span> 
+                    </div>
+
+                    <div class="task-item-control__play-button margin_right"><i class="fas fa-play"></i></div>
+
+                    <div class="pomodoro-task-count margin_right">
+                        <span class="pomodoro-task-count__minus" ><i class="fas fa-minus"></i></span>
+                        <input class="pomodoro-task-count__value-input" type="text" value="4">
+                        <span class="pomodoro-task-count__plus"><i class="fas fa-plus"></i></span>
+                    </div>
+
+                    <div class="task-item-settings"> <i class="fas fa-ellipsis-v"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <ul class="footer-report">
+                <li class="footer-report__item">Total: <span class="footer-report__item-value">13</span></li>
+                <li class="footer-report__item">Completed: <span class="footer-report__item-value">2</span></li>
+                <li class="footer-report__item">Completion time: <span class="footer-report__item-value">02:25</span></li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

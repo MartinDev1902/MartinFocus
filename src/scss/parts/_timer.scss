@@ -47,21 +47,10 @@
         padding: 0 20px;
         height: 40px;
         border: none;
-
-        &:hover{
-            cursor: pointer;
-        }
     }
 
     .start_stop_button{
         width: 60%;
-        @include boldFont();
-        text-transform: uppercase;
-        letter-spacing: 1px;
-
-        i{
-            margin-right: 10px;
-        }
     }
 
     .next_button{
