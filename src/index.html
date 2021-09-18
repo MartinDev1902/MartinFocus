@@ -7,6 +7,30 @@
     <title>MartinFocus - pomodoro tracker</title>
 </head>
 <body>
-    HEllo world 3
+
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <img src="./img/logo.png" alt="MartinFocus" class="logo">
+            <div class="preloader-content__indicator"><i class="fas fa-spinner fa-spin"></i></div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container header-content">
+            <img src="./img/logo.png" alt="MartinFocus" class="logo logo_responsive_size">
+
+            <div class="burger" id="mobileNavigationButton">
+                <div class="burger__line"></div>
+                <div class="burger__line"></div>
+                <div class="burger__line"></div>
+            </div> 
+
+            <nav class="header-navigation mobile_header_navigation" id="headerNavigation">
+                <div class="header-navigation__item mobile_header_navigation_item" id="report"><i class="fas fa-chart-line"></i> Report</div>
+                <div class="header-navigation__item mobile_header_navigation_item" id="settings"><i class="fas fa-cog"></i> Settings</div>
+                <div class="header-navigation__item mobile_header_navigation_item" id="login"><i class="fas fa-user"></i> Login</div>
+            </nav>
+        </div>       
+    </header>
 </body>
 </html>

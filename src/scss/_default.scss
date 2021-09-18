@@ -1,0 +1,25 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    font-size: 14px;
+    font-family: 'Rubik';
+    @include regularFont();
+    color: $textColor;
+    min-width: 320px;
+}
+
+.container{
+    max-width: 1170px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.hide{
+    display: none !important;
+}
+
+.visible{
+    display: block !important;
+}

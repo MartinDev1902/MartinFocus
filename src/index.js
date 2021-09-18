@@ -1,2 +1,13 @@
 import './scss/main.scss'
-console.log('Hello world 2')
+
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        document.getElementById('preloader').classList.add('hide')
+    }, 2000);
+})
+
+
+
+document.getElementById('mobileNavigationButton').addEventListener('click', () => {
+    document.getElementById('headerNavigation').classList.toggle('visible')
+})

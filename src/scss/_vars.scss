@@ -1,0 +1,20 @@
+//Colors
+$textColor: #111111;
+$accentColor: #0060FF;
+$borderColor: #F2F2F2;
+$whiteColor: #ffffff;
+$shadowColor: $borderColor;
+
+//Fonts
+@mixin lightFont {
+    font-weight: 300;
+}
+@mixin regularFont {
+    font-weight: 400;
+}
+@mixin mediumFont {
+    font-weight: 500;
+}
+@mixin boldFont {
+    font-weight: 700;
+}
