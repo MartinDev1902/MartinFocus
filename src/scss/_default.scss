@@ -21,6 +21,10 @@ button:hover{
     cursor: pointer;
 }
 
+input:focus{
+    outline: none;
+}
+
 .container{
     max-width: 1170px;
     padding: 0 15px;
@@ -43,6 +47,53 @@ button:hover{
     color: $whiteColor;
     i{
         margin-right: 10px;
+    }
+}
+
+
+.custom-checkbox{
+
+    input{
+        display: none;
+       
+        &:checked + .custom-checkbox__content{
+            background-color: $activeCheckboxColor;
+
+            .custom-checkbox__indicator{
+                right: 2px;
+                left: auto;
+            }
+        }       
+    }
+
+    &__content{
+        display: block;
+        position: relative;
+        border-radius: 50px;
+        width: 60px;
+        height: 32px;
+        background-color: $inputBackgroundColor;
+        transition: background-color 0.3s ease;
+
+        &:hover{
+            cursor: pointer;
+        }
+        
+    }
+    
+
+    &__indicator{
+        width: 28px;
+        height: 28px;
+        background-color: $whiteColor;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+
+    &:hover{
+        cursor: pointer;
     }
 }
 

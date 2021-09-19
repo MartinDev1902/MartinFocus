@@ -33,17 +33,17 @@
         </div>       
     </header>
 
-    <section class="timer-section">
-        <div class="timer-navigation">
-            <div class="timer-navigation__item active_button">Pomodoro</div>
-            <div class="timer-navigation__item">Short Brake</div>
-            <div class="timer-navigation__item">Long brake</div>
+    <section class="timer-section" id="timer">
+        <div class="timer-navigation" id="timerNavigation">
+            <div class="timer-navigation__item active_button" id="tabPomodoroTimer">Pomodoro</div>
+            <div class="timer-navigation__item" id="tabShortBreakTimer">Short Brake</div>
+            <div class="timer-navigation__item" id="tabLongBreakTimer">Long brake</div>
         </div>
 
-        <div class="timer">25:00</div>
+        <div class="timer" id="timeCounter">25:00</div>
 
         <div class="timer-control">
-            <button class="timer-control__button start_stop_button button-primary" id="startStopButton"><i class="fas fa-play"></i> Start</button>
+            <button class="timer-control__button start_stop_button button-primary" id="startStopButton" data-role="start"><i class="fas fa-play"></i> Start</button>
             <button class="timer-control__button next_button" id="nextTimerButton" disabled><i class="fas fa-step-forward"></i></button>
         </div>
     </section>
@@ -166,5 +166,84 @@
             </ul>
         </div>
     </footer>
+
+
+    <div class="modal-window hide">
+        <div class="modal-window-wrapper">
+            <div class="close-modal-window"><i class="fas fa-times"></i></div>
+            <div class="modal-window-title">Settings</div>
+            <div class="modal-window-content">
+                <div class="settings-group">
+                    <div class="settings-group__title">Time (minutes)</div>
+
+                    <div class="settings-group-subsettings">
+                        <div class="settings-group-subsettings__item">
+                            <label class="title" for="pomodoro">Pomodoro</label>
+                            <input class="value" id="pomodoro" type="number" value="25">
+                        </div>
+                        <div class="settings-group-subsettings__item">
+                            <label class="title" for="shortBreak">Short break</label>
+                            <input class="value" id="shortBreak" type="number" value="5">
+                        </div>
+                        <div class="settings-group-subsettings__item">
+                            <label class="title" for="longBreak">Long break</label>
+                            <input class="value" id="longBreak" type="number" value="15">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group flex_center_space-between">
+                    <div class="settings-group__title">Auto start breaks?</div>
+                    <div class="settings-group__control">
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="autoStartBreaks">
+                            <label for="autoStartBreaks" class="custom-checkbox__content">
+                                <span class="custom-checkbox__indicator"></span>
+                            </label>
+                        </div>
+                    </div>                
+                </div>
+
+                <div class="settings-group flex_center_space-between">
+                    <div class="settings-group__title">Auto start pomodoros?</div>
+                    <div class="settings-group__control">
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="autoStartPomodoros">
+                            <label for="autoStartPomodoros" class="custom-checkbox__content">
+                                <span class="custom-checkbox__indicator"></span>
+                            </label>
+                        </div>
+                    </div>                
+                </div>
+
+
+                <div class="settings-group flex_center_space-between">
+                    <div class="settings-group__title">Long break interval?</div>
+                    <div class="settings-group__control">
+                        <input class="value" id="longBreakInterval" type="number" value="5">
+                    </div>                
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-window hide">
+        <div class="modal-window-wrapper">
+            <div class="close-modal-window"><i class="fas fa-times"></i></div>
+            <div class="modal-window-title">Login</div>
+            <div class="modal-window-content">
+                <form action="" class="login-form">
+                    <div class="login-form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="text" id="loginEmail" placeholder="example@email.com">
+                    </div>
+                    <div class="login-form-group">
+                        <button type="submit" class="button-primary">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

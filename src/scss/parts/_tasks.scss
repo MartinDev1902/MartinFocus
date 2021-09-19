@@ -38,9 +38,7 @@
         width: 80%;
         @include boldFont();
 
-        &:focus{
-            outline: none;
-        }
+       
     }
 
     &__button{
