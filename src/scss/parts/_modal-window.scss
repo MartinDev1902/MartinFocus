@@ -103,7 +103,11 @@
     }
 }
 
-
+.save-settings-button{
+    height: 40px;
+    border: none;
+    width: 100%;
+}
 .login-form-group{
     label{
         @include boldFont();

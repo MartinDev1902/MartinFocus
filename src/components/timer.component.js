@@ -1,8 +1,10 @@
 import Component from "../core/component"
 
 class TimerComponent extends Component{
-    constructor(id){
+    constructor(id, options){
         super(id)  
+        this.options = options
+        this.loopCount = 0
     }
 
     init(){
@@ -13,17 +15,25 @@ class TimerComponent extends Component{
 
         this.$startStopButton.addEventListener('click', e => {
             const role = this.$startStopButton.dataset.role
-            role === 'start' ? startTimer.call(this) : role === 'stop' ?  stopTimer.call(this) : null
+            role === 'start' ? this.startTimer() : role === 'stop' ?  stopTimer.call(this) : null
         })
+
         this.$el.querySelector('#timerNavigation').addEventListener('click', timerNavigation.bind(this))
-        this.$nextTimerButton.addEventListener('click', nextTimer.bind(this))
+        this.$nextTimerButton.addEventListener('click', () => { this.nextTimer() })
         
         this.$timer.innerHTML = JSON.parse(localStorage.getItem('martinFocusSettings')).pomodoro + ' : 00'  
     }
 
+    /**
+     * 
+     * @param {string} timer - name od timer (pomodoro, shortBreak or longBreak)
+     * @param {object} element - DOM element of timer
+     * 
+     * 
+     * 
+     */
     showTimer = (timer, element) => {
         let time = JSON.parse(localStorage.getItem('martinFocusSettings'))[timer] 
-    
         this.$el.querySelectorAll('.timer-navigation__item').forEach(element => {
             element.classList.remove('active_button')
         })
@@ -45,25 +55,63 @@ class TimerComponent extends Component{
 
         clearInterval(this.pomodoroTimer)
     } 
-}
 
-function nextTimer(){
-    this.turnButtonToStart()
+    nextTimer(){
+        this.turnButtonToStart()
+    
+        const activeTimer = this.$el.querySelector('.active_button').id
+    
+        switch(activeTimer){
+            case 'tabPomodoroTimer':
+                this.loopCount++
+                if(this.loopCount === +this.options.longBreakInterval)  {
+                    this.showTimer('longBreak', this.$el.querySelector('#tabLongBreakTimer'))
+                    if(this.options.autoStartBreak){this.startTimer()}
+                    break
+                }
+                if(this.options.autoStartBreak){}
+                this.showTimer('shortBreak', this.$el.querySelector('#tabShortBreakTimer'))
+                if(this.options.autoStartBreak){this.startTimer()}
+                break
+            case 'tabShortBreakTimer':
+                this.showTimer('pomodoro', this.$el.querySelector('#tabPomodoroTimer'))
+                if(this.options.autoStartPomodoro){this.startTimer()}
+                break
+            case 'tabLongBreakTimer':
+                this.showTimer('pomodoro', this.$el.querySelector('#tabPomodoroTimer'))
+                if(this.options.autoStartPomodoro){this.startTimer()}
+                this.loopCount = 0
+                break
+        }
+    }
 
-    const activeTimer = this.$el.querySelector('.active_button').id
 
-    switch(activeTimer){
-        case 'tabPomodoroTimer':
-            this.showTimer('shortBreak', this.$el.querySelector('#tabShortBreakTimer'))
-            break
-        case 'tabShortBreakTimer':
-            this.showTimer('longBreak', this.$el.querySelector('#tabLongBreakTimer'))
-            break
-        case 'tabLongBreakTimer':
-            this.showTimer('pomodoro', this.$el.querySelector('#tabPomodoroTimer'))
-            break
+    startTimer(){
+        this.turnButtonToStop()
+        let time = +this.$timer.textContent.slice(0, this.$timer.textContent.indexOf(':')) * 60
+        
+        this.pomodoroTimer = setInterval(() => {
+    
+            if(--time <= 0) {
+               this.turnButtonToStart()
+                this.nextTimer()
+            }
+           
+            let minutes = parseInt(time / 60, 10)
+            let seconds = parseInt(time % 60, 10)
+            
+            minutes = minutes < 10 ? "0" + minutes : minutes
+            seconds = seconds < 10 ? "0" + seconds : seconds
+            
+    
+            this.$timer.innerHTML = minutes + ' : ' + seconds
+    
+        }, 1000);
+    
     }
 }
+
+
 
 
 function timerNavigation(e){
@@ -94,7 +142,7 @@ function stopTimer(){
 
     switch(activeTimer){
         case 'tabPomodoroTimer':
-            this.showTimer('pomodoro', this.$el.querySelector('#' + activeTimer))
+            this.showTimer('pomodoro', this.$el.querySelector('#' + activeTimer))   
             break
         case 'tabShortBreakTimer':
             this.showTimer('shortBreak', this.$el.querySelector('#' + activeTimer))
@@ -103,29 +151,6 @@ function stopTimer(){
             this.showTimer('longBreak', this.$el.querySelector('#' + activeTimer))
             break
     }
-}
-
-
-function startTimer(){
-
-    this.turnButtonToStop()
-    let time = +this.$timer.textContent.slice(0, this.$timer.textContent.indexOf(':')) * 60
-
-    this.pomodoroTimer = setInterval(() => {
-
-        if(--time <= 0) clearInterval(pomodoroTimer)
-       
-        let minutes = parseInt(time / 60, 10)
-        let seconds = parseInt(time % 60, 10)
-        
-        minutes = minutes < 10 ? "0" + minutes : minutes
-        seconds = seconds < 10 ? "0" + seconds : seconds
-        
-
-        this.$timer.innerHTML = minutes + ' : ' + seconds
-
-    }, 1000);
-
 }
 
 export default TimerComponent
