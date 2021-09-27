@@ -4,7 +4,6 @@ export class ModalWindow{
         this.modalWindowTitle = options.modalWindowTitle
         this.component = options.component
         this.$openModalButton.addEventListener('click', openModalWindow.bind(this))
-        console.log(this.$openModalButton)
     }
 
   

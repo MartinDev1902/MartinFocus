@@ -28,7 +28,6 @@
             <nav class="header-navigation mobile_header_navigation" id="headerNavigation">
                 <div class="header-navigation__item mobile_header_navigation_item" id="report"><i class="fas fa-chart-line"></i> Report</div>
                 <div class="header-navigation__item mobile_header_navigation_item" id="settings"><i class="fas fa-cog"></i> Settings</div>
-                <div class="header-navigation__item mobile_header_navigation_item" id="login"><i class="fas fa-user"></i> Login</div>
             </nav>
         </div>       
     </header>
@@ -48,144 +47,21 @@
         </div>
     </section>
 
-    <section class="active-task-section container">I'm creating my first task</section>
+    <section class="active-task-section container" id="activeTask">I'm creating my first task</section>
 
     <section class="tasks-section container">
         <div class="section-title">Tasks</div>
 
-        <form class="create-task-form">
+        <form class="create-task-form" id="createTask">
             <input class="create-task-form__input" type="text" placeholder="What are you working now?" name="taskTitle"> 
             <button type="submit" class="create-task-form__button button-primary"><i class="fas fa-plus"></i> <span class="responsive_display_none_text">Add task</span> </button>
         </form>
 
-        <div class="tasks-list">           
-            
-
-            <div class="task-item" id="taskItem">
-                <div class="task-item__title">I'm creating my first task</div>
-
-                <div class="task-item-control">
-
-                    <div class="task-item-control__counter-of margin_right">
-                        <span class="made">1</span>
-                         / 
-                         <span class="total">3</span> 
-                    </div>
-
-                    <div class="task-item-control__play-button margin_right"><i class="fas fa-play"></i></div>
-
-                    <div class="pomodoro-task-count margin_right">
-                        <span class="pomodoro-task-count__minus" ><i class="fas fa-minus"></i></span>
-                        <input class="pomodoro-task-count__value-input" type="text" value="4">
-                        <span class="pomodoro-task-count__plus"><i class="fas fa-plus"></i></span>
-                    </div>
-
-                    <div class="task-item-settings"> <i class="fas fa-ellipsis-v"></i></div>
-                </div>
-            </div>
-
-            <div class="task-item" id="taskItem">
-                <div class="task-item__title">I'm creating my first task</div>
-
-                <div class="task-item-control">
-
-                    <div class="task-item-control__counter-of margin_right">
-                        <span class="made">5</span>
-                         / 
-                         <span class="total">10</span> 
-                    </div>
-
-                    <div class="task-item-control__play-button margin_right"><i class="fas fa-play"></i></div>
-
-                    <div class="pomodoro-task-count margin_right">
-                        <span class="pomodoro-task-count__minus" ><i class="fas fa-minus"></i></span>
-                        <input class="pomodoro-task-count__value-input" type="text" value="4">
-                        <span class="pomodoro-task-count__plus"><i class="fas fa-plus"></i></span>
-                    </div>
-
-                    <div class="task-item-settings"> <i class="fas fa-ellipsis-v"></i></div>
-                </div>
-            </div>
-
-
-            <div class="task-item" id="taskItem">
-                <div class="task-item__title">I'm creating my first task</div>
-
-                <div class="task-item-control">
-
-                    <div class="task-item-control__counter-of margin_right">
-                        <span class="made">3</span>
-                         / 
-                         <span class="total">4</span> 
-                    </div>
-
-                    <div class="task-item-control__play-button margin_right"><i class="fas fa-play"></i></div>
-
-                    <div class="pomodoro-task-count margin_right">
-                        <span class="pomodoro-task-count__minus" ><i class="fas fa-minus"></i></span>
-                        <input class="pomodoro-task-count__value-input" type="text" value="4">
-                        <span class="pomodoro-task-count__plus"><i class="fas fa-plus"></i></span>
-                    </div>
-
-                    <div class="task-item-settings"> <i class="fas fa-ellipsis-v"></i></div>
-                </div>
-            </div>
-
-
-            <div class="task-item" id="taskItem">
-                <div class="task-item__title">I'm creating my first task </div>
-
-                <div class="task-item-control">
-
-                    <div class="task-item-control__counter-of margin_right">
-                        <span class="made">1</span>
-                         / 
-                         <span class="total">6</span> 
-                    </div>
-
-                    <div class="task-item-control__play-button margin_right"><i class="fas fa-play"></i></div>
-
-                    <div class="pomodoro-task-count margin_right">
-                        <span class="pomodoro-task-count__minus" ><i class="fas fa-minus"></i></span>
-                        <input class="pomodoro-task-count__value-input" type="text" value="4">
-                        <span class="pomodoro-task-count__plus"><i class="fas fa-plus"></i></span>
-                    </div>
-
-                    <div class="task-item-settings"> <i class="fas fa-ellipsis-v"></i></div>
-                </div>
-            </div>
-        </div>
+        <div class="tasks-list" id="taskList"> </div>
     </section>
 
-    <footer class="footer">
-        <div class="container">
-            <ul class="footer-report">
-                <li class="footer-report__item">Total: <span class="footer-report__item-value">13</span></li>
-                <li class="footer-report__item">Completed: <span class="footer-report__item-value">2</span></li>
-                <li class="footer-report__item">Completion time: <span class="footer-report__item-value">02:25</span></li>
-            </ul>
-        </div>
+    <footer class="footer" id="footer">
+        
     </footer>
-
-
-    
-
-    <div class="modal-window hide">
-        <div class="modal-window-wrapper">
-            <div class="close-modal-window"><i class="fas fa-times"></i></div>
-            <div class="modal-window-title">Login</div>
-            <div class="modal-window-content">
-                <form action="" class="login-form">
-                    <div class="login-form-group">
-                        <label for="loginEmail">Email</label>
-                        <input type="text" id="loginEmail" placeholder="example@email.com">
-                    </div>
-                    <div class="login-form-group">
-                        <button type="submit" class="button-primary">Login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

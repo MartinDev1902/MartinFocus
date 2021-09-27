@@ -8,6 +8,7 @@ class TimerComponent extends Component{
     }
 
     init(){
+        this.tasks = JSON.parse(localStorage.getItem('tasks'))
         this.$startStopButton = this.$el.querySelector('#startStopButton')
         this.$nextTimerButton = this.$el.querySelector('#nextTimerButton')
         this.$timer = this.$el.querySelector('#timeCounter')
@@ -29,9 +30,7 @@ class TimerComponent extends Component{
      * @param {string} timer - name od timer (pomodoro, shortBreak or longBreak)
      * @param {object} element - DOM element of timer
      * 
-     * 
-     * 
-     */
+    */
     showTimer = (timer, element) => {
         let time = JSON.parse(localStorage.getItem('martinFocusSettings'))[timer] 
         this.$el.querySelectorAll('.timer-navigation__item').forEach(element => {
@@ -60,7 +59,7 @@ class TimerComponent extends Component{
         this.turnButtonToStart()
     
         const activeTimer = this.$el.querySelector('.active_button').id
-    
+       
         switch(activeTimer){
             case 'tabPomodoroTimer':
                 this.loopCount++
@@ -86,8 +85,26 @@ class TimerComponent extends Component{
     }
 
 
-    startTimer(){
+    startTimer(taskID, incrementPomdoroDone){
         this.turnButtonToStop()
+        if(taskID){
+            const activeTask = this.tasks.find(item => item.id === taskID)
+            document.getElementById('activeTask').textContent = activeTask.title
+            localStorage.setItem('activeTask', JSON.stringify(activeTask.id))
+        }
+
+    //    if(incrementPomodoroDone){
+
+    //     console.log(incrementPomdoroDone)
+    //     // const activeTaskID = JSON.parse(localStorage.getItem('activeTask'))
+    //     // this.tasks.forEach(item => {   
+    //     //     if(item.id === activeTaskID){
+    //     //        return ++item.pomodoroDone
+    //     //     }
+    //     // })
+
+    //     // localStorage.setItem('tasks', JSON.stringify(this.tasks))
+    //    }
         let time = +this.$timer.textContent.slice(0, this.$timer.textContent.indexOf(':')) * 60
         
         this.pomodoroTimer = setInterval(() => {
@@ -108,6 +125,11 @@ class TimerComponent extends Component{
     
         }, 1000);
     
+    }
+
+
+    stopTimer(){
+        stopTimer.call(this)
     }
 }
 
