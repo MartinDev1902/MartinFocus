@@ -5,9 +5,6 @@ export class ModalWindow{
         this.component = options.component
         this.$openModalButton.addEventListener('click', openModalWindow.bind(this))
     }
-
-  
-    
 }
 
 function modalWindowTemplate(options){
@@ -24,7 +21,7 @@ function modalWindowTemplate(options){
     `
 }
 
-async function openModalWindow(){
+function openModalWindow(){
     document.querySelector('body').insertAdjacentHTML('beforeEnd', modalWindowTemplate({
         title: this.modalWindowTitle, 
         component: this.component

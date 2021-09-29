@@ -54,7 +54,8 @@ input:focus{
 .custom-checkbox{
 
     input{
-        display: none;
+        position: absolute;
+        visibility: hidden;
        
         &:checked + .custom-checkbox__content{
             background-color: $activeCheckboxColor;

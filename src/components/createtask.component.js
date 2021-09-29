@@ -1,36 +1,28 @@
 import { footer, taskList } from "../index";
 import Component from "../core/component";
+import { store } from "../store";
+import LocalStorageService from "../services/localstorage.service"
 
 class CreateTaskComponent extends Component{
     constructor (id){
         super(id)
-
         this.$el.addEventListener('submit', this.createTask)
     }
 
     createTask(e){
         e.preventDefault()
-        let tasks = JSON.parse(localStorage.getItem('tasks'))
         const taskTitle = e.target.taskTitle.value
         if(taskTitle === ''){
             alert('Write your task!!!')
             return false
         }
-        let task = {
-            id:  createID(),
-            title: taskTitle,
-            pomodoroCount: 4,
-            pomodoroDone: 0,
-            completed: false
-        }
 
-        const newTasks = [...tasks, task]
-
-        
-        localStorage.setItem('tasks', JSON.stringify(newTasks))
-        e.target.taskTitle.value = ''
-        taskList.renderTasks()
-        footer.renderFooter()
+        store.dispatch({ type: 'CREATE_TASK', task: { id:  createID(), title: taskTitle, pomodoroCount: 4, pomodoroDone: 0, completed: false }}, () => {
+            LocalStorageService.setData('tasks', store.getState().tasks)
+            e.target.taskTitle.value = ''
+            taskList.renderTasks()
+            footer.renderFooter()
+        })       
     }
 }
 

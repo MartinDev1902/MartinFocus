@@ -1,12 +1,12 @@
 import { timer } from ".."
-import { ModalWindow } from "../core/modalWindow"
-
-
-class SettingsComponent{
-    constructor(){
-        this.settings = JSON.parse(localStorage.getItem('martinFocusSettings'))
-        
+import { store } from "../store"
+import LocalStorageService from "../services/localstorage.service"
+class SettingsComponent {
+    constructor(){ 
+        this.settings = store.getState().settings        
     }
+
+
 
    
 
@@ -22,16 +22,22 @@ class SettingsComponent{
                 autoStartPomodoro: document.getElementById('autoStartPomodoros').checked,
                 longBreakInterval: document.getElementById('longBreakInterval').value
             }
-            localStorage.setItem('martinFocusSettings', JSON.stringify(this.settings))
-            callback()
-            timer.showTimer('pomodoro', timer.$el.querySelector('#tabPomodoroTimer'))
+           
+
+            store.dispatch({type: 'CHANGE_SETTINGS', settings: this.settings}, () => {
+                LocalStorageService.setData('martinFocusSettings', store.getState().settings)
+                callback()
+                timer.showTimer('pomodoro', timer.$el.querySelector('#tabPomodoroTimer'))
+            })
+            
+           
         })
 
         
     }
 
     render(){
-        return `    <div class="settings-group">
+        return `    <div class="settings-group" id="settingsModal">
                     <div class="settings-group__title">Time (minutes)</div>
 
                     <div class="settings-group-subsettings">
@@ -54,7 +60,7 @@ class SettingsComponent{
                     <div class="settings-group__title">Auto start breaks?</div>
                     <div class="settings-group__control">
                         <div class="custom-checkbox">
-                            <input type="checkbox" id="autoStartBreaks" ${this.settings.autoStartBreak ? 'checked' : null}>
+                            <input  type="checkbox" id="autoStartBreaks" ${this.settings.autoStartBreak ? 'checked' : null}>
                             <label for="autoStartBreaks" class="custom-checkbox__content">
                                 <span class="custom-checkbox__indicator"></span>
                             </label>
@@ -66,7 +72,7 @@ class SettingsComponent{
                     <div class="settings-group__title">Auto start pomodoros?</div>
                     <div class="settings-group__control">
                         <div class="custom-checkbox">
-                            <input type="checkbox" id="autoStartPomodoros" ${this.settings.autoStartPomodoro ? 'checked' : null}> 
+                            <input  type="checkbox" id="autoStartPomodoros" ${this.settings.autoStartPomodoro ? 'checked' : null}> 
                             <label for="autoStartPomodoros" class="custom-checkbox__content">
                                 <span class="custom-checkbox__indicator"></span>
                             </label>

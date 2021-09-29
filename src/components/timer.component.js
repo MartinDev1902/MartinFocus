@@ -1,14 +1,15 @@
 import Component from "../core/component"
+import { store } from "../store"
 
 class TimerComponent extends Component{
-    constructor(id, options){
+    constructor(id){
         super(id)  
-        this.options = options
+        this.options = store.getState().settings
         this.loopCount = 0
     }
 
     init(){
-        this.tasks = JSON.parse(localStorage.getItem('tasks'))
+        this.tasks = store.getState.tasks
         this.$startStopButton = this.$el.querySelector('#startStopButton')
         this.$nextTimerButton = this.$el.querySelector('#nextTimerButton')
         this.$timer = this.$el.querySelector('#timeCounter')
@@ -24,6 +25,8 @@ class TimerComponent extends Component{
         
         this.$timer.innerHTML = JSON.parse(localStorage.getItem('martinFocusSettings')).pomodoro + ' : 00'  
     }
+
+
 
     /**
      * 
@@ -93,18 +96,7 @@ class TimerComponent extends Component{
             localStorage.setItem('activeTask', JSON.stringify(activeTask.id))
         }
 
-    //    if(incrementPomodoroDone){
-
-    //     console.log(incrementPomdoroDone)
-    //     // const activeTaskID = JSON.parse(localStorage.getItem('activeTask'))
-    //     // this.tasks.forEach(item => {   
-    //     //     if(item.id === activeTaskID){
-    //     //        return ++item.pomodoroDone
-    //     //     }
-    //     // })
-
-    //     // localStorage.setItem('tasks', JSON.stringify(this.tasks))
-    //    }
+    
         let time = +this.$timer.textContent.slice(0, this.$timer.textContent.indexOf(':')) * 60
         
         this.pomodoroTimer = setInterval(() => {

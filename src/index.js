@@ -5,42 +5,32 @@ import TasksComponent from './components/tasks.component'
 import TimerComponent from './components/timer.component'
 import { ModalWindow } from './core/modalWindow'
 import './scss/main.scss'
+import { store } from './store'
 
-const appSettings = JSON.parse(localStorage.getItem('martinFocusSettings'))
-const tasks = JSON.parse(localStorage.getItem('tasks'))
-if(!appSettings){
-    localStorage.setItem('martinFocusSettings', JSON.stringify({
-        pomodoro: 25,
-        shortBreak: 5,
-        longBreak: 15,
-        longBreakInterval: 4,
-        autoStartBreak: true,
-        autoStartPomodoro: true
-    }))
-}
 
-if(!tasks){
-    localStorage.setItem('tasks', JSON.stringify([]))
-}
 
+
+// Preloader
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         document.getElementById('preloader').classList.add('hide')
     }, 2000)
 })
 
+
+// Mobile navigation
 document.getElementById('mobileNavigationButton').addEventListener('click', () => {
     document.getElementById('headerNavigation').classList.toggle('visible')
 })
 
 
-export const timer = new TimerComponent('timer', appSettings)
+// Initial components
+export const timer = new TimerComponent('timer')
 export const taskList = new TasksComponent('taskList')
 const createTask = new CreateTaskComponent('createTask')
-
 export const footer = new FooterComponent('footer')
 
-
+// Modal Windows
 new ModalWindow({
     openModalButton: 'settings',
     modalWindowTitle: 'Settings',

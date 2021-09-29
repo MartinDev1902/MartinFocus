@@ -6,12 +6,8 @@ class FooterComponent extends Component{
            
     }
 
-    init(){
-       
-        
+    init(){        
         this.renderFooter()
-        
-
     }
 
     renderFooter(){
