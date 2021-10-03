@@ -1,6 +1,6 @@
-import LocalStorageService from "../services/localstorage.service";
-import createStore from "./createStore";
-import reducers from "./reducers";
+import LocalStorageService from "../services/localstorage.service"
+import createStore from "./createStore"
+import reducers from "./reducers"
 
 
 const defaultSettings = {
@@ -11,17 +11,27 @@ const defaultSettings = {
     autoStartBreak: true,
     autoStartPomodoro: true
 }
-const defaultActiveTask = {title: "Just working"}
 
-const tasks = LocalStorageService.getData('tasks')
-const settings = LocalStorageService.getData('martinFocusSettings')
-const activeTask = LocalStorageService.getData('activeTask')
+const defaultActiveTask = 'defaultTask'
 
+const tasks = LocalStorageService.getData('tasks') ? LocalStorageService.getData('tasks') : LocalStorageService.setData('tasks', [])
+const settings = LocalStorageService.getData('martinFocusSettings') ? LocalStorageService.getData('martinFocusSettings'): LocalStorageService.setData('martinFocusSettings', defaultSettings)
+const activeTask = LocalStorageService.getData('activeTask') && LocalStorageService.getData('activeTask') !== 'defaultTask' ? LocalStorageService.getData('activeTask') : LocalStorageService.setData('activeTask', newActiveTask())
 
-const initialState = {
-    tasks: tasks ? tasks : LocalStorageService.setData('tasks', []),
-    settings: settings ? settings : LocalStorageService.setData('martinFocusSettings', defaultSettings),
-    activeTask: activeTask ? activeTask : LocalStorageService.setData('activeTask', tasks ? tasks[0].id : defaultActiveTask )
+function newActiveTask(){
+    let activeTask
+    if(tasks && tasks.length > 0) {
+        activeTask = tasks.find(element => element.completed !== true )
+        return activeTask ? activeTask.id : defaultActiveTask
+    }else{
+        return defaultActiveTask
+    }  
 }
 
-export let store = createStore(initialState, reducers)
+const initialState = {
+    tasks: tasks ? tasks : [],
+    settings: settings ? settings : defaultSettings,
+    activeTask: activeTask ? activeTask : defaultActiveTask
+}
+
+export const store = createStore(initialState, reducers)

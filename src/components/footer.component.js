@@ -1,4 +1,5 @@
 import Component from "../core/component"
+import { store } from "../store"
 
 class FooterComponent extends Component{
     constructor(id){
@@ -7,15 +8,16 @@ class FooterComponent extends Component{
     }
 
     init(){        
-        this.renderFooter()
+        super.init()
     }
 
-    renderFooter(){
-        this.tasks = JSON.parse(localStorage.getItem('tasks'))
-        this.pomodoroTime = +JSON.parse(localStorage.getItem('martinFocusSettings')).pomodoro
-        this.longBreakInterval = +JSON.parse(localStorage.getItem('martinFocusSettings')).longBreakInterval
-        this.longBreak = +JSON.parse(localStorage.getItem('martinFocusSettings')).longBreak
-        this.shortBreak = +JSON.parse(localStorage.getItem('martinFocusSettings')).shortBreak
+    render(){
+        //TODO make global variables local
+        this.tasks = store.getState().tasks
+        this.pomodoroTime = +store.getState().settings.pomodoro
+        this.longBreakInterval = +store.getState().settings.longBreakInterval
+        this.longBreak = +store.getState().settings.longBreak
+        this.shortBreak = +store.getState().settings.shortBreak
        
         this.total = 0 
         this.completed = 0

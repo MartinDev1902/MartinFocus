@@ -1,4 +1,4 @@
-import { footer, timer } from ".."
+import { activeTask, footer, timer } from ".."
 import Component from "../core/component"
 import { store } from "../store"
 import LocalStorageService from "../services/localstorage.service"
@@ -9,8 +9,8 @@ class TasksComponent extends Component {
         super(id) }
 
     init(){
-        this.renderTasks()
-
+        super.init()
+       
         this.$el.addEventListener('click', e => {
             const id = e.target.closest('.task-item').dataset.id
             const closestControlButton = e.target.closest('.task-control-button')
@@ -21,9 +21,12 @@ class TasksComponent extends Component {
                     const answer = prompt('Write new task name')
                     if(answer) this.changeTask(id, 'title', answer) 
                     break
-                case 'playTimer':
-                    timer.stopTimer()
-                    timer.startTimer(id)
+                case 'playTimer': 
+                    store.dispatch({type: 'SET_ACTIVE_TASK', id: this.getTaskById(id).id}, () => {
+                        LocalStorageService.setData('activeTask', store.getState().activeTask)
+                        activeTask.render()
+                    })
+                    timer.startTimer()
                     break
                 case 'minusPomodoroCount':
                     let minusValue = +closestControlButton.nextElementSibling.value - 1
@@ -37,10 +40,13 @@ class TasksComponent extends Component {
                      this.changeTask(id, 'pomodoroCount', plusValue)
                      break
                 case 'removeTask':
+                    store.getState().activeTask === id ? timer.stopTimer() : null
                     store.dispatch({ type: 'REMOVE_TASK', id }, () => {
                         LocalStorageService.setData('tasks', store.getState().tasks)
-                        this.renderTasks()
-                        footer.renderFooter()
+                        LocalStorageService.setData('activeTask', store.getState().activeTask)
+                        activeTask.render()
+                        this.render()
+                        footer.render()
                     })
                     break
                 default:
@@ -52,14 +58,18 @@ class TasksComponent extends Component {
     changeTask(id, valueName, newValue){
         store.dispatch({type: 'CHANGE_TASK', taskInfo: { id, valueName, newValue }}, () => {
             LocalStorageService.setData('tasks', store.getState().tasks)
-            this.renderTasks()
-            footer.renderFooter()
+            this.render()
+            footer.render()
         })        
     }
 
-    renderTasks(){
+    getTaskById(id){
+        return store.getState().tasks.find(item => item.id === id)
+    }
+
+    render(){
         this.$el.innerHTML = ''
-        store.getState().tasks.map(task => this.$el.insertAdjacentHTML('afterbegin', taskTemplate(task)))
+        store.getState().tasks.map(task => task.completed ===  true ? null : this.$el.insertAdjacentHTML('beforeend', taskTemplate(task)))
     }
 }
 

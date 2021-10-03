@@ -6,13 +6,7 @@ class SettingsComponent {
         this.settings = store.getState().settings        
     }
 
-
-
-   
-
     afterRender(callback){
-       
-
         document.getElementById('saveSettingsButton').addEventListener('click', e => {
             this.settings = {
                 pomodoro: document.getElementById('pomodoro').value,
@@ -28,12 +22,8 @@ class SettingsComponent {
                 LocalStorageService.setData('martinFocusSettings', store.getState().settings)
                 callback()
                 timer.showTimer('pomodoro', timer.$el.querySelector('#tabPomodoroTimer'))
-            })
-            
-           
-        })
-
-        
+            }) 
+        }) 
     }
 
     render(){
@@ -43,15 +33,15 @@ class SettingsComponent {
                     <div class="settings-group-subsettings">
                         <div class="settings-group-subsettings__item">
                             <label class="title" for="pomodoro">Pomodoro</label>
-                            <input class="value" id="pomodoro" type="number" value="${this.settings.pomodoro}">
+                            <input class="value" id="pomodoro" type="number" min="1" value="${this.settings.pomodoro}">
                         </div>
                         <div class="settings-group-subsettings__item">
                             <label class="title" for="shortBreak">Short break</label>
-                            <input class="value" id="shortBreak" type="number" value="${this.settings.shortBreak}">
+                            <input class="value" id="shortBreak" type="number" min="1" value="${this.settings.shortBreak}">
                         </div>
                         <div class="settings-group-subsettings__item">
                             <label class="title" for="longBreak">Long break</label>
-                            <input class="value" id="longBreak" type="number" value="${this.settings.longBreak}">
+                            <input class="value" id="longBreak" type="number" min="1" value="${this.settings.longBreak}">
                         </div>
                     </div>
                 </div>
@@ -84,7 +74,7 @@ class SettingsComponent {
                 <div class="settings-group flex_center_space-between">
                     <div class="settings-group__title">Long break interval?</div>
                     <div class="settings-group__control">
-                        <input class="value" id="longBreakInterval" type="number" value="${this.settings.longBreakInterval}">
+                        <input class="value" id="longBreakInterval" type="number" min="1" value="${this.settings.longBreakInterval}">
                     </div>                
                 </div>
 
@@ -94,9 +84,5 @@ class SettingsComponent {
                 </div>
                 `
     }
-
-    
 }
-
-
 export default SettingsComponent

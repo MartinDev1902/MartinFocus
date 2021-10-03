@@ -1,0 +1,18 @@
+.completed-task-list{
+    .report-header{
+       display: flex;
+       @include boldFont();
+       margin-bottom: 15px;
+    }
+    &__item{
+        display: flex;
+        border-bottom: 1px solid $borderColor;
+        padding: 15px 0;
+    }
+
+    &__item, .report-header{
+        div{
+            width: 50%;
+        }
+    }
+}

@@ -5,6 +5,10 @@ class Component {
     }
 
     init(){
+        this.render()
+    }
+
+    render(){
 
     }
 }
